@@ -1,5 +1,20 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Quick start
+
+Put this code in your page and load the js:
+
+```
+<div id="looks-root" data-api-protocol="https" data-token="QXSSC5RE349K7LQTG5Y8WGX9SQAAQTTS" data-api-url="myshowb2b.com/api" data-id-category="23"></div>
+```
+
+## Development
+
+In the project directory, you can run:
+
+`npm install`
+
+
 ## Available Scripts
 
 In the project directory, you can run:
