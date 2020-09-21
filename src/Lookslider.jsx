@@ -16,7 +16,7 @@ class Lookslider extends React.Component {
   }
 
   componentDidMount() {
-    const url = `${this.props.api_protocol}://${this.props.token}@${this.props.api_url}/categories/?output_format=JSON&filter[active]=1&display=[id,name,link_rewrite]&sort=[id_DESC]&filter[id_parent]=${this.props.id_category}`;
+    const url = `${this.props.api_protocol}://${this.props.token}@${this.props.api_url}/categories/?output_format=JSON&filter[active]=1&display=[id,name,link_rewrite]&sort=[id_DESC]&filter[id_parent]=[${this.props.id_category}]`;
 
     axios.get(url,{
       withCredentials: true,

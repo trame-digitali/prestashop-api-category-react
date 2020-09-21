@@ -18,7 +18,7 @@ ReactDOM.render(
       api_url= {document.getElementById('looks-root').getAttribute('data-api-url')}
       id_category= {document.getElementById('looks-root').getAttribute('data-id-category')}
     />}
-    {console.log(document.getElementById('looks-root').getAttribute('data-slider'))}
+
   </React.StrictMode>,
   document.getElementById('looks-root')
 );

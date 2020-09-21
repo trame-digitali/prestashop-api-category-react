@@ -24,9 +24,10 @@ class Looks extends React.Component {
   }
 
   componentDidMount() {
-    const url = `${this.props.api_protocol}://${this.props.token}@${this.props.api_url}/categories/?output_format=JSON&filter[active]=1&display=[id,name,link_rewrite]&sort=[id_DESC]&filter[id_parent]=${this.props.id_category}`;
 
-    axios.get(url,{
+    const url = `${this.props.api_protocol}://${this.props.token}@${this.props.api_url}/categories/?output_format=JSON&filter[active]=1&display=[id,name,link_rewrite]&sort=[id_DESC]&filter[id_parent]=[${this.props.id_category}]`;
+
+    axios.get(url, {
       withCredentials: true,
       headers: {
         "Accept": "application/json",
@@ -48,24 +49,44 @@ class Looks extends React.Component {
 
   }
 
+
   render() {
 
-    const { looks, isLoading, error } = this.state;
+    const { looks, isLoading, error } = this.state,
+          columns = 3;
+    let rows = [],
+        cols = [],
+        index = 0;
+
+
+    for (index; index < looks.length; index++){
+      cols.push(
+        <div className="looks-list-element col-xs-12 col-md-4 col-lg-4 col">
+          <a href={`/${looks[index].id}-${looks[index].link_rewrite}`}>
+            <img alt={looks[index].name} src={`/get-image.php?id=${looks[index].id}`} className="img-responsive" />
+          </a>
+        </div>
+      );
+
+      if ( ((index + 1) % columns == 0) || ((index + 1)== looks.length) ) {
+          rows.push(
+              <div className="row" key={index}>
+                  {cols}
+              </div>
+          );
+          cols = []
+      }
+
+    }
+
     return (
       <div className="looks-list looks-full-image">
-
         {error ? <p>{error.message}</p> : null}
 
         {!isLoading ? (
-          looks.map( (look, index) => (
-              <div className="row">
-                <div className="looks-list-element col-xs-12 col-md-12 col">
-                  <a href={`/${look.id}-${look.link_rewrite}`}>
-                    <img alt={look.name} src={`/get-image.php?id=${look.id}`} className="img-responsive" />
-                  </a>
-                </div>
-              </div>
-          ))
+          <div>
+            {rows}
+          </div>
         ):(
           <h3>Loading...</h3>
         )}
