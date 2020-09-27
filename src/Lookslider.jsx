@@ -17,12 +17,15 @@ class Lookslider extends React.Component {
 
   componentDidMount() {
     const url = `${this.props.api_protocol}://${this.props.token}@${this.props.api_url}/categories/?output_format=JSON&filter[active]=1&display=[id,name,link_rewrite]&sort=[id_DESC]&filter[id_parent]=[${this.props.id_category}]`;
+    const usernamePasswordBuffer = Buffer.from(this.props.token);
+    const base64data = usernamePasswordBuffer.toString('base64');
 
     axios.get(url,{
       withCredentials: true,
       headers: {
         "Accept": "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        'Authorization': `Basic ${base64data}`
       }
     },{
       auth: {

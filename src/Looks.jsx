@@ -26,12 +26,15 @@ class Looks extends React.Component {
   componentDidMount() {
 
     const url = `${this.props.api_protocol}://${this.props.token}@${this.props.api_url}/categories/?output_format=JSON&filter[active]=1&display=[id,name,link_rewrite]&sort=[id_DESC]&filter[id_parent]=[${this.props.id_category}]`;
+    const usernamePasswordBuffer = Buffer.from(this.props.token);
+    const base64data = usernamePasswordBuffer.toString('base64');
 
     axios.get(url, {
       withCredentials: true,
       headers: {
         "Accept": "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        'Authorization': `Basic ${base64data}`
       }
     },{
       auth: {
@@ -62,9 +65,14 @@ class Looks extends React.Component {
     for (index; index < looks.length; index++){
       cols.push(
         <div className="looks-list-element col-xs-12 col-md-4 col-lg-4 col">
-          <a href={`/${looks[index].id}-${looks[index].link_rewrite}`}>
-            <img alt={looks[index].name} src={`/get-image.php?id=${looks[index].id}`} className="img-responsive" />
-          </a>
+          <div class="img_block">
+            <a href={`/${looks[index].id}-${looks[index].link_rewrite}`}>
+              <img alt={looks[index].name} src={`/get-image.php?id=${looks[index].id}`} className="img-responsive" />
+            </a>
+          </div>
+          <div class="product_desc">
+            <h3 itemprop="name"><a href={`/${looks[index].id}-${looks[index].link_rewrite}`} class="product_name one_line" title={looks[index].name} >{looks[index].name}</a></h3>
+          </div>
         </div>
       );
 
