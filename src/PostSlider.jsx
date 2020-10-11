@@ -53,7 +53,7 @@ class PostSlider extends React.Component {
                 <div>
                   <div className="looks-slider-item">
                     <a href={`/${look.id}-${look.link_rewrite}`}>
-                      <img alt={look.name} src={`/get-image.php?id=${look.id}`} className="img-responsive" />
+                      <img alt={look.name} src={`/api/images/categories/${look.id}?ws_key=${this.props.token}`} className="img-responsive" />
                     </a>
                   </div>
                 </div>

@@ -61,13 +61,15 @@ class Looks extends React.Component {
         cols = [],
         index = 0;
 
+    //<img alt={looks[index].name} src={`/get-image.php?id=${looks[index].id}`} className="img-responsive" />
+
 
     for (index; index < looks.length; index++){
       cols.push(
         <div className="looks-list-element col-xs-12 col-md-4 col-lg-4 col">
           <div class="img_block">
             <a href={`/${looks[index].id}-${looks[index].link_rewrite}`}>
-              <img alt={looks[index].name} src={`/get-image.php?id=${looks[index].id}`} className="img-responsive" />
+              <img alt={looks[index].name} src={`/api/images/categories/${looks[index].id}?ws_key=${this.props.token}`} className="img-responsive" />
             </a>
           </div>
           <div class="product_desc">
