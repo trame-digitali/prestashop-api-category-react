@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Put this code in your page and load the js:
 
 ```
-<div id="looks-root" data-api-protocol="https" data-token="QXSSC5RE349K7LQTG5Y8WGX9SQAAQTTS" data-api-url="myshowb2b.com/api" data-id-category="23"></div>
+<div id="looks-root" data-api-protocol="https" data-token="[TOKEN]" data-api-url="myshowb2b.com/api" data-id-category="[IDCATEGORY1],[IDCATEGORY2]"></div>
 ```
 
 ## Development
